@@ -1,2 +1,4 @@
 C:\Users\WGAhome\OneDrive\KorkinRgr\Debug\KorkinRgr.exe
 C:\Users\WGAhome\OneDrive\KorkinRgr\Debug\KorkinRgr.pdb
+G:\c++repo\KorkinRgr\Debug\KorkinRgr.exe
+G:\c++repo\KorkinRgr\Debug\KorkinRgr.pdb

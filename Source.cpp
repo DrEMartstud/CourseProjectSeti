@@ -26,7 +26,6 @@ void calculations(double latFrom, double lonFrom, double latTo, double lonTo, do
 	Parameters parameters;
 	parameters.initiateUc(Un);
 	parameters.initiateHda(hd);
-	//parameters.initiateHda(Hda)
 	parameters.getInfo();
 nl();
 
@@ -37,7 +36,7 @@ nl();
 	if(abs(parameters.ABdegree - parameters.ABradian) > 0){
 	cout << "При вычислениях разница между полученными АВ составила " << abs(parameters.ABdegree - parameters.ABradian) << "км, что можно считать незначительной погрешностью.\n";
 	}
-	cout << "В целях повышения точности рассчетов я буду использовать АВ, полученную через радианы.\n";
+	cout << "В целях повышения точности расчетов я буду использовать АВ, полученную через радианы.\n";
 nl();
 	parameters.calculateAlpha(latFrom, lonFrom, lonTo, parameters.cDegree);	 //азимут АВ
 	parameters.calculateBeta(latTo, lonFrom, lonTo, parameters.cDegree);	//азимут ВА
@@ -66,9 +65,6 @@ void main() {
 	bool fromKp = false; //если нужно вручную вводить
 	
 
-
-
-
 //обьявления переменных
 	double
 		latV, lonV,	    //широта и долгота судна (v - vessel)
@@ -83,9 +79,9 @@ void main() {
 		hdv, hm1, hm2;  //высота приемника
 //присваивание значений
 	if (fromKp) {
-		latV = 39.43, lonV = 131.11; UnV = 4.6; nameV = "Судна Победа"; hdv = 18; cout << "Дефолтное значение судна\n";
-		lat1m = 42.45; lon1m = 133.02; name1m = "БРСТ в г.Владивосток"; hm1 = 20; Un1m = 2; cout << "Дефолтное значение БРСТ1\n";
-		lat2m = 54.45; lon2m = 20.35; name2m = "БРСТ в г.Калининград"; hm2 = 22; Un2m = 6; cout << "Дефолтное значение БРСТ2\n";
+		latV = 39.43, lonV = 131.11; UnV = 4.6; nameV = "Судна Победа"; hdv = 18/2; cout << "Дефолтное значение судна\n";
+		lat1m = 42.45; lon1m = 133.02; name1m = "БРСТ в г.Владивосток"; hm1 = 25; Un1m = 3.2; cout << "Дефолтное значение БРСТ1\n";
+		lat2m = 54.45; lon2m = 20.35; name2m = "БРСТ в г.Калининград"; hm2 = 22; Un2m = 4; cout << "Дефолтное значение БРСТ2\n";
 	}
 	else {
 		br("Ввод исходных данных для судна (name, lat, lon, Unom, hda)");
@@ -122,14 +118,6 @@ cl();
 	
 	
 //расчеты
-
-//расчеты
-	//1
-	//Coordinates fromThis(41.027489, 134.473041, "судна"); Coordinates toThis(43.108770, 131.881505, "МСКЦ во Владивостоке"); //от судна до Влд
-	//Coordinates fromThis(43.108770, 131.881505, "МСКЦ во Владивостоке"); Coordinates toThis(41.027489, 134.473041, "судна"); //от Влд до судна 
-	//2
-	//Coordinates fromThis(41.027489, 134.473041, "судна"); Coordinates toThis(54.41, 20.28, "МСКЦ в Калининграде"); //от судна до Клд
-	//Coordinates fromThis(54.41, 20.28, "МСКЦ в Калининграде"); Coordinates toThis(41.027489, 134.473041, "судна"); //от  Клд до судна 
 	Coordinates vessel(latV, lonV, nameV, UnV, hdv);
 nl();
 	Coordinates mskc1(lat1m, lon1m, name1m, Un1m, hm1);
@@ -152,9 +140,11 @@ cl();
 br("Расчеты берег-судно \n\nОт " + mskc1.locationsName + " до судна");
 nl();
 calculations(mskc1.latitude, mskc1.longitude, vessel.latitude, vessel.longitude, vessel.Unom, vessel.hda);
+//calculations(42.40, 133.02, vessel.latitude, vessel.longitude, vessel.Unom, vessel.hda);
 cl();
 br("От " + mskc2.locationsName + " до судна");
 nl();
 calculations(mskc2.latitude, mskc2.longitude, vessel.latitude, vessel.longitude, vessel.Unom, vessel.hda);
+//calculations(54.43, 20.44, vessel.latitude, vessel.longitude, vessel.Unom, vessel.hda);
 cl();
 }

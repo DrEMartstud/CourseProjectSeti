@@ -20,7 +20,7 @@ class Parameters {
 public:
 	//дано
 	int hda;					    	 //высота прямолинейной антенны 
-	double Unom = 2;					 //уровень сигнала на входе 
+	double Unom;					 //уровень сигнала на входе 
 	double Uc1;							 //номинальный уровень сигнала на входе, определяемый заданным отношением сигнал/помеха вариант 1
 	double Uc2;							 //номинальный уровень сигнала на входе, определяемый заданным отношением сигнал/помеха вариант 2
 	const int h = 300;					 //высота отражающего слоя атмосферы 
@@ -48,6 +48,7 @@ public:
 		hda = hd;
 	}
 	virtual void initiateUc(double Un) {
+		Unom = Un;
 		Uc1 = Un * 1.5;
 		Uc2 = Un;
 		cout << "Unom = " << Unom << " мкВ\n";
@@ -80,7 +81,7 @@ public:
 
 	virtual void calculateAB(double cd, double cr) {
 		ABradian = cr * R; ABdegree = cd * 111;
-		cout << "Рассчитаем AB через градусы и радианы.\n";
+		bra("Рассчитаем AB через градусы и радианы.");
 		cout << "AB через формулу для градусов = 111 * " << cDegree << " = " << ABdegree << "км\n";
 		cout << "AB через формулу для радиан = R * " << cRadian << " = " << ABradian << "км\n";
 	}
