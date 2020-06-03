@@ -1,0 +1,38 @@
+//Судно это А, суша это В  
+//расчеты
+	//1
+	//Coordinates fromThis(41.027489, 134.473041, "судна"); Coordinates toThis(43.108770, 131.881505, "МСКЦ во Владивостоке"); //от судна до Влд
+	//Coordinates fromThis(43.108770, 131.881505, "МСКЦ во Владивостоке"); Coordinates toThis(41.027489, 134.473041, "судна"); //от Влд до судна 
+	//2
+	//Coordinates fromThis(41.027489, 134.473041, "судна"); Coordinates toThis(54.41, 20.28, "МСКЦ в Калининграде"); //от судна до Клд
+	Coordinates fromThis(54.41, 20.28, "МСКЦ в Калининграде"); Coordinates toThis(41.027489, 134.473041, "судна"); //от  Клд до судна 
+	
+	Parameters parameters;
+	parameters.getInfo();
+	nl();
+
+	fromThis.getInfo();
+	toThis.getInfo();
+	nl();
+
+	parameters.calculateC(fromThis.latitude, fromThis.longitude, toThis.latitude, toThis.longitude);
+	nl();
+	parameters.calculateAB(parameters.cDegree, parameters.cRadian);
+	nl();
+	cout << "При вычислениях разница между полученными АВ составила " << abs(parameters.ABdegree - parameters.ABradian) <<"км, что можно считать незначительной погрешностью.\n";
+	cout << "В целях повышения точности рассчетов я буду использовать АВ, полученную через радианы.\n";
+	nl();
+
+	parameters.calculateAlpha(fromThis.latitude, fromThis.longitude, toThis.longitude, parameters.cDegree);	 //азимут АВ
+	parameters.calculateBeta(toThis.latitude, fromThis.longitude, toThis.longitude, parameters.cDegree);	//азимут ВА
+			
+	parameters.calculateN();
+	nl();
+	
+	parameters.calculateD();
+	nl();
+
+	parameters.calculateEa();
+	nl();
+	parameters.calculateP();
+	nl();

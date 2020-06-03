@@ -1,0 +1,8 @@
+﻿  Source.cpp
+C:\Users\white\source\repos\KorkinRgr\Source.cpp(13,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\white\source\repos\KorkinRgr\Source.cpp(14,25): warning C4244: 'initializing': conversion from 'double' to 'const float', possible loss of data
+C:\Users\white\source\repos\KorkinRgr\Source.cpp(17,21): warning C4305: 'initializing': truncation from 'double' to 'const float'
+C:\Users\white\source\repos\KorkinRgr\Source.cpp(52,17): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\white\source\repos\KorkinRgr\Source.cpp(52,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\white\source\repos\KorkinRgr\Source.cpp(59,12): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  KorkinRgr.vcxproj -> C:\Users\white\source\repos\KorkinRgr\Debug\KorkinRgr.exe
