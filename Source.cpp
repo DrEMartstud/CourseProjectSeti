@@ -22,9 +22,9 @@ void br(string header) {
 	cout << "________________________________________________________________\n";
 }
 
-void calculations(double latFrom, double lonFrom, double latTo, double lonTo, double Un, int hd) {
+void calculations(double latFrom, double lonFrom, double latTo, double lonTo, double Unt, double Unu, double Unc, double hd) {
 	Parameters parameters;
-	parameters.initiateUc(Un);
+	parameters.initiateUc(Unt, Unu, Unc);
 	parameters.initiateHda(hd);
 	parameters.getInfo();
 nl();
@@ -61,8 +61,8 @@ void main() {
 	
 	
 	
-	//bool fromKp = true; //если нужны дефолтные значения
-	bool fromKp = false; //если нужно вручную вводить
+	bool fromKp = true; //если нужны дефолтные значения
+	//bool fromKp = false; //если нужно вручную вводить
 	
 
 //обьявления переменных
@@ -70,7 +70,7 @@ void main() {
 		latV, lonV,	    //широта и долгота судна (v - vessel)
 		lat1m, lon1m,   //широта и долгота первого мскц (1m - first mskc)
 		lat2m, lon2m,   //широта и долгота второго мскц (2m - second mskc)
-		UnV, Un1m, Un2m;//номинальная мощность приемника
+		UnVu, UnVc, UnVt, Un1mc, Un1mt, Un1mu, Un2mc, Un2mt, Un2mu;//номинальная мощность приемника
 	string
 		nameV,          //название судна
 		name1m,			//город1
@@ -79,37 +79,42 @@ void main() {
 		hdv, hm1, hm2;  //высота приемника
 //присваивание значений
 	if (fromKp) {
-		latV = 39.43, lonV = 131.11; UnV = 4.6; nameV = "Судна Победа"; hdv = 18/2; cout << "Дефолтное значение судна\n";
-		lat1m = 42.45; lon1m = 133.02; name1m = "БРСТ в г.Владивосток"; hm1 = 25; Un1m = 3.2; cout << "Дефолтное значение БРСТ1\n";
-		lat2m = 54.45; lon2m = 20.35; name2m = "БРСТ в г.Калининград"; hm2 = 22; Un2m = 4; cout << "Дефолтное значение БРСТ2\n";
+		latV = 39.43, lonV = 131.11; UnVt = 0.7; UnVc = 0.7; UnVu = 4; nameV = "Судна Победа"; hdv = 9; cout << "Дефолтное значение судна\n";
+		lat1m = 42.45; lon1m = 133.02; name1m = "БРСТ в г.Владивосток"; hm1 = 12.5; Un1mu = UnVu; Un1mc = UnVc; Un1mt = UnVt; cout << "Дефолтное значение БРСТ1\n";
+		lat2m = 54.45; lon2m = 20.35; name2m = "БРСТ в г.Калининград"; hm2 = 11; Un2mu = UnVu; Un2mc = UnVc; Un2mt = UnVt; cout << "Дефолтное значение БРСТ2\n";
 	}
 	else {
 		br("Ввод исходных данных для судна (name, lat, lon, Unom, hda)");
-		cout << "Введите название судна                 : "; cin >> nameV; nl();
-		cout << "Введите широту судна (lat)             : "; cin >> latV; nl();
-		cout << "Введите долготу судна (lon)            : "; cin >> lonV; nl();
-		cout << "Введите высоту прямолинейной антенны   : "; cin >> hdv; nl();
-		cout << "Введите номинальную мощность приемника : "; cin >> UnV; nl();
-
+		cout << "Введите название судна                           : "; cin >> nameV; nl(); 
+		cout << "Введите широту судна (lat)           (формат d.m): "; cin >> latV; nl();
+		cout << "Введите долготу судна (lon)          (формат d.m): "; cin >> lonV; nl();
+		cout << "Введите высоту прямолинейной антенны        (в м): "; cin >> hdv; nl();
+		cout << "Введите Unom для  ТФ                        (мкВ): "; cin >> UnVt; nl();
+		cout << "Введите Unom для  УБПЧ                      (мкВ): "; cin >> UnVu; nl();
+		cout << "Введите Unom для  ЦИВ                       (мкВ): "; cin >> UnVc; nl();
 		nameV = "Судна " + nameV;
 
 		nl();
 		br("Ввод исходных данных для БРСТ1 (name, lat, lon, Unom, hda)");
 
-		cout << "Введите город с ближайшей БРСТ         : "; cin >> name1m; nl();
-		cout << "Введите широту ближайшей БРСТ (lat)    : "; cin >> lat1m; nl();
-		cout << "Введите долготу ближайшей БРСТ (lon)   : "; cin >> lon1m; nl();
-		cout << "Введите высоту прямолинейной антенны   : "; cin >> hm1; nl();
-		cout << "Введите номинальную мощность приемника : "; cin >> Un1m; nl();
+		cout << "Введите город с ближайшей БРСТ                   : "; cin >> name1m; nl();
+		cout << "Введите широту ближайшей БРСТ (lat)  (формат d.m): "; cin >> lat1m; nl();
+		cout << "Введите долготу ближайшей БРСТ (lon) (формат d.m): "; cin >> lon1m; nl();
+		cout << "Введите высоту прямолинейной антенны        (в м): "; cin >> hm1; nl();
+		cout << "Введите Unom для  ТФ                        (мкВ): "; cin >> Un1mt; nl();
+		cout << "Введите Unom для  УБПЧ                      (мкВ): "; cin >> Un1mu; nl();
+		cout << "Введите Unom для  ЦИВ                       (мкВ): "; cin >> Un1mc; nl();
 
 		name1m = "БРСТ1 в г." + name1m;
 		nl();
 		br("Ввод исходных данных для БРСТ2 (name, lat, lon, Unom, hda)");
-		cout << "Введите город с дальнейшей БРСТ        : "; cin >> name2m; nl();
-		cout << "Введите широту дальней БРСТ (lat)      : "; cin >> lat2m; nl();
-		cout << "Введите долготу дальней БРСТ (lon)     : "; cin >> lon2m; nl();
-		cout << "Введите высоту прямолинейной антенны   : "; cin >> hm2; nl();
-		cout << "Введите номинальную мощность приемника : "; cin >> Un2m; nl();
+		cout << "Введите город с дальнейшей БРСТ                  : "; cin >> name2m; nl();
+		cout << "Введите широту дальней БРСТ (lat)    (формат d.m): "; cin >> lat2m; nl();
+		cout << "Введите долготу дальней БРСТ (lon)   (формат d.m): "; cin >> lon2m; nl();
+		cout << "Введите высоту прямолинейной антенны        (в м): "; cin >> hm2; nl();
+		cout << "Введите Unom для  ТФ                        (мкВ): "; cin >> Un2mt; nl();
+		cout << "Введите Unom для  УБПЧ                      (мкВ): "; cin >> Un2mu; nl();
+		cout << "Введите Unom для  ЦИВ                       (мкВ): "; cin >> Un2mc; nl();
 
 		name2m = "БРСТ2 в г." + name2m;
 		nl();
@@ -117,34 +122,34 @@ void main() {
 cl();
 	
 	
-//расчеты
-	Coordinates vessel(latV, lonV, nameV, UnV, hdv);
+//расчеты Coordinates(lat, lon, name, Unt, Unu, Unc, hd)
+	Coordinates vessel(latV, lonV, nameV, UnVt, UnVu, UnVc, hdv);
 nl();
-	Coordinates mskc1(lat1m, lon1m, name1m, Un1m, hm1);
+	Coordinates mskc1(lat1m, lon1m, name1m, Un1mt, Un1mu, Un1mc, hm1);
 nl();
-	Coordinates mskc2(lat2m, lon2m, name2m, Un2m, hm2);
+	Coordinates mskc2(lat2m, lon2m, name2m, Un2mt, Un2mu, Un2mc, hm2);
 nl();
 	
 
 cl();
-//судно-берег
+//судно-берег  calculations(latFrom, lonFrom, latTo, lonTo, Unt, Unu, Unc, hd)
 br("Расчеты судно - берег \n\nОт судна до " + mskc1.locationsName);
 nl();
-calculations(vessel.latitude, vessel.longitude, mskc1.latitude, mskc1.longitude, mskc1.Unom, mskc1.hda);
+calculations(vessel.latitude, vessel.longitude, mskc1.latitude, mskc1.longitude, mskc1.Unomt, mskc1.Unomu, mskc1.Unomc, mskc1.hda);
 cl();
 br("От судна до " + mskc2.locationsName);
 nl();
-calculations(vessel.latitude, vessel.longitude, mskc2.latitude, mskc2.longitude, mskc2.Unom, mskc2.hda);
+calculations(vessel.latitude, vessel.longitude, mskc2.latitude, mskc2.longitude, mskc2.Unomt, mskc2.Unomu, mskc2.Unomc, mskc2.hda);
 //берег-судно
 cl();
 br("Расчеты берег-судно \n\nОт " + mskc1.locationsName + " до судна");
 nl();
-calculations(mskc1.latitude, mskc1.longitude, vessel.latitude, vessel.longitude, vessel.Unom, vessel.hda);
+calculations(mskc1.latitude, mskc1.longitude, vessel.latitude, vessel.longitude, vessel.Unomt, vessel.Unomu, vessel.Unomc, vessel.hda);
 //calculations(42.40, 133.02, vessel.latitude, vessel.longitude, vessel.Unom, vessel.hda);
 cl();
 br("От " + mskc2.locationsName + " до судна");
 nl();
-calculations(mskc2.latitude, mskc2.longitude, vessel.latitude, vessel.longitude, vessel.Unom, vessel.hda);
+calculations(mskc2.latitude, mskc2.longitude, vessel.latitude, vessel.longitude, vessel.Unomt, vessel.Unomu, vessel.Unomc, vessel.hda);
 //calculations(54.43, 20.44, vessel.latitude, vessel.longitude, vessel.Unom, vessel.hda);
 cl();
 }
