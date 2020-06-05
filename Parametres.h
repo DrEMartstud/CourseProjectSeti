@@ -167,19 +167,19 @@ cout << "Äëÿ ÖÈÂ\n";
 		//P1 = pow((Ea1 * N * d) / (71.6 * pow(0.8, N - 2) * exp(-y * (N - 1))), 2);
 		P1t = pow(Eat1 * tmp, 2);
 cout << "Äëÿ ÒÔ\n";
-		cout << " 1) P = (" << Eat1 << " * " << tmp << ")^2 = " << P1t << " êÂò\n";
+		cout << " 1) P = (" << Eat1 << " * " << tmp << ")^2 = " << P1t << " Âò\n";
 		P2t = pow(Eat2 * tmp, 2);
-		cout << " 2) P = (" << Eat2 << " * " << tmp << ")^2 = " << P2t << " êÂò\n";
+		cout << " 2) P = (" << Eat2 << " * " << tmp << ")^2 = " << P2t << " Âò\n";
 cout << "Äëÿ ÓÁÏ×\n";
 		P1u = pow(Eau1 * tmp, 2);
-		cout << " 1) P = (" << Eau1 << " * " << tmp << ")^2 = " << P1u << " êÂò\n";
+		cout << " 1) P = (" << Eau1 << " * " << tmp << ")^2 = " << P1u << " Âò\n";
 		P2u = pow(Eau2 * tmp, 2);
-		cout << " 2) P = (" << Eau2 << " * " << tmp << ")^2 = " << P2u << " êÂò\n";
+		cout << " 2) P = (" << Eau2 << " * " << tmp << ")^2 = " << P2u << " Âò\n";
 cout << "Äëÿ ÖÈÂ\n";
 		P1c = pow(Eac1 * tmp, 2);
-		cout << " 1) P = (" << Eac1 << " * " << tmp << ")^2 = " << P1c << " êÂò\n";
+		cout << " 1) P = (" << Eac1 << " * " << tmp << ")^2 = " << P1c << " Âò\n";
 		P2c = pow(Eac2 * tmp, 2);
-		cout << " 2) P = (" << Eac2 << " * " << tmp << ")^2 = " << P2c << " êÂò\n";
+		cout << " 2) P = (" << Eac2 << " * " << tmp << ")^2 = " << P2c << " Âò\n";
 	}
 
 	virtual void getInfo() {
