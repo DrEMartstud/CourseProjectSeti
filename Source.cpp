@@ -79,9 +79,9 @@ void main() {
 		hdv, hm1, hm2;  //высота приемника
 //присваивание значений
 	if (fromKp) {
-		latV = 39.43, lonV = 131.11; UnVt = 0.7; UnVc = 0.7; UnVu = 4; nameV = "Судна Победа"; hdv = 9; cout << "Дефолтное значение судна\n";
-		lat1m = 42.45; lon1m = 133.02; name1m = "БРСТ в г.Владивосток"; hm1 = 12.5; Un1mu = UnVu; Un1mc = UnVc; Un1mt = UnVt; cout << "Дефолтное значение БРСТ1\n";
-		lat2m = 54.45; lon2m = 20.35; name2m = "БРСТ в г.Калининград"; hm2 = 11; Un2mu = UnVu; Un2mc = UnVc; Un2mt = UnVt; cout << "Дефолтное значение БРСТ2\n";
+		latV = 39.43, lonV = 131.11; UnVt = 0.7; UnVc = 0.7; UnVu = 4.6; nameV = "Судна Победа"; hdv = 18; cout << "Дефолтное значение судна\n";
+		lat1m = 42.45; lon1m = 133.02; name1m = "БРСТ в г.Владивосток"; hm1 = 25; Un1mu = 3.2; Un1mc = 0.5; Un1mt = 0.5; cout << "Дефолтное значение БРСТ1\n";
+		lat2m = 54.45; lon2m = 20.35; name2m = "БРСТ в г.Калининград"; hm2 = 22; Un2mu = 4.6; Un2mc = 0.7; Un2mt = 0.7; cout << "Дефолтное значение БРСТ2\n";
 	}
 	else {
 		br("Ввод исходных данных для судна (name, lat, lon, Unom, hda)");

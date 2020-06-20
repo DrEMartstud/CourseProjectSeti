@@ -64,26 +64,29 @@ public:
 	virtual void initiateUc(double Unt, double Unu, double Unc) {
 		int Gvh1 = 4, Gvh2 = 2;
 		Unomt = Unt;
-		Uct1 = Unt * Gvh1 / 10;
-		Uct2 = Unt * Gvh2 / 10;
+		Uct1 = Unt * Gvh1;
+		Uct2 = Unt * Gvh2;
 		Unomu = Unu;
-		Ucu1 = Unu * Gvh1 / 10;
-		Ucu2 = Unu * Gvh2 / 10;
+		Ucu1 = Unu * Gvh1;
+		Ucu2 = Unu * Gvh2;
 		Unomc = Unc;
-		Ucc1 = Unc * Gvh1 / 10;
-		Ucc2 = Unc * Gvh2 / 10;
+		Ucc1 = Unc * Gvh1;
+		Ucc2 = Unc * Gvh2;
+	
 		bra( "Для однополосной телефонии");
 		cout << "Unom = " << Unomt << " мкВ\n";
-		cout << "1) Uc = Unom * (1 + |3|) = " << Unomt << " * 4 = " << Uct1 << " В * 10^-5\n";
-		cout << "2) Uc = Unom * (1 - |3|) = " << Unomt << " * 2 = " << Uct2 << " В * 10^-5\n";
-		bra("Для УБПЧ");
-		cout << "Unom = " << Unomu << " мкВ\n";
-		cout << "1) Uc = Unom * (1 + |3|) = " << Unomu << " * 4 = " << Ucu1 << " В * 10^-5\n";
-		cout << "2) Uc = Unom * (1 - |3|) = " << Unomu << " * 2 = " << Ucu2 << " В * 10^-5\n";
+		cout << "1) Uc = Unom * (1 + |3|) = " << Unomt << " * " << Gvh1 << " = " << Uct1 / 10 << " В * 10^-5\n"; if (Unt > Uct1) {Uct1 = Unt; cout << "Uc < Un => Uc = " << Uct1 / 10 << " В * 10^-5\n";}
+		cout << "2) Uc = Unom * (1 - |3|) = " << Unomt << " * " << Gvh2 << " = " << Uct2 / 10 << " В * 10^-5\n"; if (Unt > Uct2) {Uct2 = Unt; cout << "Uc < Un => Uc = " << Uct2 / 10 << " В * 10^-5\n";}
 		bra("Для ЦИВ");
 		cout << "Unom = " << Unomc << " мкВ\n";
-		cout << "1) Uc = Unom * (1 + |3|) = " << Unomc << " * 4 = " << Ucc1 << " В * 10^-5\n";
-		cout << "2) Uc = Unom * (1 - |3|) = " << Unomc << " * 2 = " << Ucc2 << " В * 10^-5\n";
+		cout << "1) Uc = Unom * (1 + |3|) = " << Unomc << " * " << Gvh1 << " = " << Ucc1 / 10 << " В * 10^-5\n"; if (Unc > Ucc1) {Ucc1 = Unc; cout << "Uc < Un => Uc = " << Ucc1 / 10 << " В * 10^-5\n";}
+		cout << "2) Uc = Unom * (1 - |3|) = " << Unomc << " * " << Gvh2 << " = " << Ucc2 / 10 << " В * 10^-5\n"; if (Unc > Ucc2) {Ucc2 = Unc; cout << "Uc < Un => Uc = " << Ucc2 / 10 << " В * 10^-5\n";}
+		bra("Для УБПЧ");
+		cout << "Unom = " << Unomu << " мкВ\n";
+		cout << "1) Uc = Unom * (1 + |3|) = " << Unomu << " * " << Gvh1 << " = " << Ucu1 / 10 << " В * 10^-5\n"; if (Unu > Ucu1) {Ucu1 = Unu; cout << "Uc < Un => Uc = " << Ucu1 / 10 << " В * 10^-5\n";}
+		cout << "2) Uc = Unom * (1 - |3|) = " << Unomu << " * " << Gvh2 << " = " << Ucu2 / 10 << " В * 10^-5\n"; if (Unu > Ucu2) {Ucu2 = Unu; cout << "Uc < Un => Uc = " << Ucu2 / 10 << " В * 10^-5\n";}
+	Uct1 /= 10;Uct2 /= 10;Ucu1 /= 10;Ucu2 /= 10;Ucc1 /= 10;Ucc2 /= 10;
+	
 	}
 
 	double fromRadianToDegrees(double rad) {
@@ -149,17 +152,17 @@ cout << "Для ТФ\n";
 		Eat2 = 2 * Uct2 / hda * pow(10, -5);
 		cout << " 2) Ea = " << Eat2 << " В/м\n";
 		
-		Eau1 = 2 * Ucu1 / hda * pow(10, -5);
-cout << "Для УБПЧ\n";
-		cout << " 1) Ea = " << Eau1 << " В/м\n";
-		Eau2 = 2 * Ucu2 / hda * pow(10, -5);
-		cout << " 2) Ea = " << Eau2 << " В/м\n";
-		
 		Eac1 = 2 * Ucc1 / hda * pow(10, -5);
 cout << "Для ЦИВ\n";
 		cout << " 1) Ea = " << Eac1 << " В/м\n";
 		Eac2 = 2 * Ucc2 / hda * pow (10, -5);
 		cout << " 2) Ea = " << Eac2 << " В/м\n";
+
+		Eau1 = 2 * Ucu1 / hda * pow(10, -5);
+cout << "Для УБПЧ\n";
+		cout << " 1) Ea = " << Eau1 << " В/м\n";
+		Eau2 = 2 * Ucu2 / hda * pow(10, -5);
+		cout << " 2) Ea = " << Eau2 << " В/м\n";
 	}
 	virtual void calculateP() {
 		bra("Средняя мощность радиоустановки P");
@@ -170,16 +173,17 @@ cout << "Для ТФ\n";
 		cout << " 1) P = (" << Eat1 << " * " << tmp << ")^2 = " << P1t << " Вт\n";
 		P2t = pow(Eat2 * tmp, 2);
 		cout << " 2) P = (" << Eat2 << " * " << tmp << ")^2 = " << P2t << " Вт\n";
-cout << "Для УБПЧ\n";
-		P1u = pow(Eau1 * tmp, 2);
-		cout << " 1) P = (" << Eau1 << " * " << tmp << ")^2 = " << P1u << " Вт\n";
-		P2u = pow(Eau2 * tmp, 2);
-		cout << " 2) P = (" << Eau2 << " * " << tmp << ")^2 = " << P2u << " Вт\n";
 cout << "Для ЦИВ\n";
 		P1c = pow(Eac1 * tmp, 2);
 		cout << " 1) P = (" << Eac1 << " * " << tmp << ")^2 = " << P1c << " Вт\n";
 		P2c = pow(Eac2 * tmp, 2);
 		cout << " 2) P = (" << Eac2 << " * " << tmp << ")^2 = " << P2c << " Вт\n";
+cout << "Для УБПЧ\n";
+		P1u = pow(Eau1 * tmp, 2);
+		cout << " 1) P = (" << Eau1 << " * " << tmp << ")^2 = " << P1u << " Вт\n";
+		P2u = pow(Eau2 * tmp, 2);
+		cout << " 2) P = (" << Eau2 << " * " << tmp << ")^2 = " << P2u << " Вт\n";
+
 	}
 
 	virtual void getInfo() {
